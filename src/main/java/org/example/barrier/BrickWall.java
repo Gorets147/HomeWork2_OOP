@@ -1,7 +1,6 @@
 package org.example.barrier;
 
 public class BrickWall extends Barrier{
-    private int height;
 
     public BrickWall(int height, String kind) {
         super(0, height, kind);

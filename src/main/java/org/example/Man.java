@@ -1,15 +1,9 @@
 package org.example;
 
 public class Man extends Athlete{
-    private String name;
-    private final int MAX_DIST_RUN = 500;
-    private final int MAX_HEIGHT_JUMP = 1;
-
-    public Man() {
-    }
 
     public Man(String name) {
-        this.name = name;
+        super(name, 500, 1);
     }
 
     public String getName() {
@@ -36,10 +30,7 @@ public class Man extends Athlete{
 
     @Override
     public String toString() {
-        return "Man{" +
-                "name='" + name + '\'' +
-                ", MAX_DIST_RUN=" + MAX_DIST_RUN +
-                ", MAX_DIST_JUMP=" + MAX_HEIGHT_JUMP +
-                '}';
+        return "Человек " +
+                "по имени: " + name + '\n';
     }
 }

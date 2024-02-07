@@ -19,34 +19,49 @@ public class Main {
         listAtlets.add(cat);
         listAtlets.add(robot);
 
-        BrickWall bw1 = new BrickWall(1, "wall");
+        BrickWall bw1 = new BrickWall(2, "wall");
         RunTrack rt1 = new RunTrack(150, "track");
         List<Barrier> listBarrier = new ArrayList<>();
         listBarrier.add(bw1);
         listBarrier.add(rt1);
 
-        System.out.println(listBarrier);
+        System.out.println("Список участников: ");
+        for (Athlete athlete : listAtlets) {
+            System.out.println(athlete);
+        }
 
-        for(Barrier barrier : listBarrier){
-            for (Athlete athlete : listAtlets){
+        List<Athlete> winers = new ArrayList<>();
+
+        for (Athlete athlete : listAtlets){
+            boolean flag = true;
+            for(Barrier barrier : listBarrier){
                 if (barrier.getKind().equals("wall")){
                     if (athlete.getMAX_HEIGHT_JUMP() >= barrier.getHeight()){
-                        System.out.println("Высота: " + athlete.getMAX_HEIGHT_JUMP());
                         athlete.jump(barrier.getHeight());
                     } else {
                         System.out.println(athlete.getName() + " не перепрыгнул");
-                        listAtlets.remove(athlete);
+                        flag = false;
+                        break;
                     }
                 } else {
                     if (athlete.getMAX_DIST_RUN() >= barrier.getLengthDistance()){
-                        System.out.println("Дистанция: " + barrier.getLengthDistance());
                         athlete.run(barrier.getLengthDistance());
                     } else {
                         System.out.println(athlete.getName() + " не пробежал");
-                        listAtlets.remove(athlete);
+                        flag = false;
+                        break;
                     }
                 }
             }
+            if(flag == true){
+                winers.add(athlete);
+            }
         }
+
+        System.out.println("Список победителей: ");
+        for (Athlete athlete : winers) {
+            System.out.println(athlete);
+        }
+
     }
 }
